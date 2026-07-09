@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Austin Marchese - Short-form reel scripts | Gascon.ai</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Ctext%20y=%22.9em%22%20font-size=%2290%22%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ink:#0E0F12; --surface:#16181D; --surface-2:#1C1F26; --line:#282B33;
+    --fg:#EAEBEE; --muted:#9AA0AA; --faint:#6B6F78;
+    --accent:#F6B23C; --accent-ink:#0E0F12; --accent-dim:rgba(246,178,60,.12); --accent-line:rgba(246,178,60,.32);
+    --violet:#C9A2FF; --violet-dim:rgba(160,120,255,.13); --violet-line:rgba(160,120,255,.34);
+    --blue:#5FA8FF; --blue-dim:rgba(95,168,255,.12); --blue-line:rgba(95,168,255,.32);
+    --alert:#E5736A;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1000px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --ink:#F4F2EC; --surface:#FFFFFF; --surface-2:#FAF8F1; --line:#E6E1D6;
+      --fg:#191A1E; --muted:#585D67; --faint:#8B8F98;
+      --accent:#B06A0C; --accent-ink:#FFFFFF; --accent-dim:rgba(176,106,12,.09); --accent-line:rgba(176,106,12,.28);
+      --violet:#7645C9; --violet-dim:rgba(118,69,201,.09); --violet-line:rgba(118,69,201,.28);
+      --blue:#2E6FC7; --blue-dim:rgba(46,111,199,.08); --blue-line:rgba(46,111,199,.26);
+      --alert:#B4483E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#0E0F12; --surface:#16181D; --surface-2:#1C1F26; --line:#282B33;
+    --fg:#EAEBEE; --muted:#9AA0AA; --faint:#6B6F78;
+    --accent:#F6B23C; --accent-ink:#0E0F12; --accent-dim:rgba(246,178,60,.12); --accent-line:rgba(246,178,60,.32);
+    --violet:#C9A2FF; --violet-dim:rgba(160,120,255,.13); --violet-line:rgba(160,120,255,.34);
+    --blue:#5FA8FF; --blue-dim:rgba(95,168,255,.12); --blue-line:rgba(95,168,255,.32);
+    --alert:#E5736A;
+  }
+  :root[data-theme="light"]{
+    --ink:#F4F2EC; --surface:#FFFFFF; --surface-2:#FAF8F1; --line:#E6E1D6;
+    --fg:#191A1E; --muted:#585D67; --faint:#8B8F98;
+    --accent:#B06A0C; --accent-ink:#FFFFFF; --accent-dim:rgba(176,106,12,.09); --accent-line:rgba(176,106,12,.28);
+    --violet:#7645C9; --violet-dim:rgba(118,69,201,.09); --violet-line:rgba(118,69,201,.28);
+    --blue:#2E6FC7; --blue-dim:rgba(46,111,199,.08); --blue-line:rgba(46,111,199,.26);
+    --alert:#B4483E;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,48px);}
+  h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.025em;font-weight:800;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+  .mono{font-family:var(--mono);}
+  .muted{color:var(--muted);}
+  .tnum{font-variant-numeric:tabular-nums;}
+
+  /* ---- masthead ---- */
+  header.mast{border-bottom:1px solid var(--line);padding:clamp(44px,8vw,92px) 0 clamp(30px,5vw,48px);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;gap:11px;align-items:center;flex-wrap:wrap;}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .eyebrow b{color:var(--accent);font-weight:600;}
+  h1.title{font-size:clamp(34px,7vw,68px);line-height:1.0;margin:22px 0 0;letter-spacing:-.035em;}
+  h1.title .amber{color:var(--accent);}
+  .lede{margin-top:22px;color:var(--muted);max-width:64ch;font-size:clamp(15px,1.7vw,17.5px);line-height:1.62;}
+  .lede b{color:var(--fg);font-weight:600;}
+  .metastrip{display:flex;gap:0;flex-wrap:wrap;margin-top:30px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);}
+  .metastrip .cell{flex:1 1 150px;padding:15px 20px;border-right:1px solid var(--line);}
+  .metastrip .cell:last-child{border-right:0;}
+  .metastrip .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);}
+  .metastrip .v{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:4px;}
+  .metastrip .v small{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0;}
+
+  /* ---- sections ---- */
+  section{padding:clamp(38px,6vw,64px) 0;border-bottom:1px solid var(--line);}
+  .sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px;}
+  .sechead .num{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.05em;}
+  h2.sectitle{font-size:clamp(22px,3.4vw,32px);letter-spacing:-.03em;}
+  .secsub{color:var(--muted);max-width:60ch;font-size:15px;margin:10px 0 30px;}
+
+  /* ---- feature reel cards ---- */
+  .feat{display:grid;grid-template-columns:132px 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:18px;}
+  .feat .rail{border-right:1px solid var(--line);padding:24px 20px;display:flex;flex-direction:column;gap:16px;background:var(--surface-2);}
+  .feat .railnum{font-family:var(--mono);font-size:34px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-.03em;}
+  .tag{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.07em;padding:5px 9px;border-radius:6px;white-space:nowrap;width:fit-content;}
+  .tag.tofu{color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-line);}
+  .tag.mofu{color:var(--blue);background:var(--blue-dim);border:1px solid var(--blue-line);}
+  .tag.bofu{color:var(--violet);background:var(--violet-dim);border:1px solid var(--violet-line);}
+  .feat .railmeta{font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.7;margin-top:auto;}
+  .feat .railmeta b{color:var(--muted);font-weight:600;}
+  .feat .body{padding:26px clamp(22px,3vw,32px);}
+  .feat h3{font-size:clamp(20px,2.7vw,26px);letter-spacing:-.025em;}
+  .feat .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
+  .quote{margin:16px 0 4px;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-dim);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.5;color:var(--fg);}
+  .quote .who{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:.02em;}
+  .why{list-style:none;padding:0;margin:18px 0 22px;display:flex;flex-direction:column;gap:9px;}
+  .why li{position:relative;padding-left:22px;font-size:14.5px;color:var(--muted);line-height:1.5;}
+  .why li b{color:var(--fg);font-weight:600;}
+  .why li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent);}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.02em;padding:11px 18px;border-radius:10px;background:var(--accent);color:var(--accent-ink);transition:transform .14s,filter .14s;}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .btn .arw{transition:transform .14s;}
+  .btn:hover .arw{transform:translate(2px,-2px);}
+
+  /* ---- slate grid ---- */
+  .slategroup{margin-bottom:28px;}
+  .grouplbl{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg);margin-bottom:16px;font-weight:600;}
+  .grouplbl .src{color:var(--faint);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;}
+  .grouplbl .line{flex:1;height:1px;background:var(--line);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;}
+  .idea{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:18px 19px;display:flex;flex-direction:column;gap:9px;transition:border-color .15s,transform .15s,background .15s;}
+  .idea:hover{border-color:var(--accent-line);transform:translateY(-2px);background:var(--surface-2);}
+  .idea .top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .idea .seq{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:600;letter-spacing:.04em;}
+  .idea h4{margin:0;font-size:16.5px;font-weight:700;letter-spacing:-.015em;}
+  .idea .concept{font-size:13.5px;color:var(--muted);line-height:1.5;}
+  .idea .exec{font-size:12.5px;color:var(--faint);line-height:1.5;padding-top:9px;border-top:1px dashed var(--line);}
+  .idea .exec b{color:var(--accent);font-weight:600;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
+
+  /* ---- engine / execution ---- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:4px 0 26px;}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;position:relative;}
+  .step .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-ink);background:var(--accent);width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;letter-spacing:0;}
+  .step h4{margin:15px 0 6px;font-size:16px;letter-spacing:-.015em;}
+  .step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;}
+  .cadence{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:18px 22px;background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:13px;}
+  .cadence .big{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--accent);}
+  .cadence .txt{font-size:14.5px;color:var(--fg);line-height:1.45;}
+  .cadence .txt b{font-weight:700;}
+
+  /* ---- close / offer ---- */
+  .close-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:start;}
+  .align p{font-size:15.5px;line-height:1.62;color:var(--muted);margin:0 0 16px;max-width:52ch;}
+  .align p b{color:var(--fg);font-weight:600;}
+  .align .pull{font-size:19px;line-height:1.45;color:var(--fg);font-weight:600;letter-spacing:-.02em;border-left:3px solid var(--accent);padding-left:16px;margin:0 0 20px;}
+  .offer{background:var(--surface);border:1px solid var(--accent-line);border-radius:16px;padding:26px 24px;}
+  .offer .olbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+  .offer .price{font-size:34px;font-weight:800;letter-spacing:-.03em;margin:8px 0 2px;}
+  .offer .price small{font-size:16px;color:var(--muted);font-weight:600;letter-spacing:0;}
+  .offer .terms{font-size:13px;color:var(--faint);font-family:var(--mono);margin-bottom:16px;}
+  .offer ul{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:10px;}
+  .offer li{position:relative;padding-left:22px;font-size:14px;color:var(--muted);line-height:1.45;}
+  .offer li b{color:var(--fg);font-weight:600;}
+  .offer li::before{content:"";position:absolute;left:2px;top:7px;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);}
+  .offer .guar{font-size:13px;color:var(--muted);line-height:1.55;padding:13px 15px;background:var(--surface-2);border-radius:10px;border:1px dashed var(--line);}
+  .offer .guar b{color:var(--accent);}
+  .signoff{margin-top:26px;font-size:16px;color:var(--fg);}
+  .signoff b{font-weight:700;}
+  .signoff .peace{font-family:var(--mono);color:var(--muted);font-size:13px;margin-top:4px;}
+
+  footer{padding:clamp(30px,5vw,52px) 0 clamp(52px,8vw,80px);}
+  .foot{font-family:var(--mono);font-size:11.5px;color:var(--faint);display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .foot .dot{width:5px;height:5px;border-radius:50%;background:var(--faint);}
+
+  @media (max-width:720px){
+    .feat{grid-template-columns:1fr;}
+    .feat .rail{flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid var(--line);padding:16px 20px;}
+    .feat .railmeta{margin-top:0;margin-left:auto;text-align:right;}
+    .close-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .feat,.idea,.step{opacity:0;transform:translateY(14px);animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards;}
+    .idea:nth-child(2){animation-delay:.05s}.idea:nth-child(3){animation-delay:.1s}.idea:nth-child(4){animation-delay:.15s}
+    @keyframes rise{to{opacity:1;transform:none;}}
+  }
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Sample project <span class="muted">//</span> <b>Gascon.ai</b></div>
+    <h1 class="title">Austin Marchese<br><span class="amber">Short-form reel scripts</span></h1>
+    <p class="lede">This is a sample of how I'd script your Instagram reels. Two ideas are written and storyboarded shot by shot. The rest are laid out as concepts with a note on how each would be produced. Everything on screen (prompts, quotes, stats) is pulled from your own videos. Nothing invented.</p>
+    <div class="metastrip">
+      <div class="cell"><div class="k">Scripted + boarded</div><div class="v tnum">2 <small>reels</small></div></div>
+      <div class="cell"><div class="k">More ideas mapped</div><div class="v tnum">8 <small>concepts</small></div></div>
+      <div class="cell"><div class="k">Source</div><div class="v">Your <small>2 videos</small></div></div>
+      <div class="cell"><div class="k">Invented prompts</div><div class="v tnum">0</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="num">01</span><h2 class="sectitle">The two scripted reels</h2></div>
+    <p class="secsub">Both are boarded shot by shot: the hook, on-screen text, the prompt to screenshot, timing, and shot notes. Click either one to open the full storyboard.</p>
+
+    <!-- FEATURE 1 -->
+    <div class="feat">
+      <div class="rail">
+        <span class="railnum">01</span>
+        <span class="tag mofu">MOFU</span>
+        <div class="railmeta"><b>~80s</b> · 9 beats<br>talking-head + screen</div>
+      </div>
+      <div class="body">
+        <div class="kicker">From: Stop Prompting Claude. Use Karpathy's Method</div>
+        <h3>The Verifier</h3>
+        <div class="quote">"A $25 million-startup COO. Still prompting AI wrong. And if he was, everybody needs to be watching this."
+          <span class="who">The hook, in your voice</span></div>
+        <ul class="why">
+          <li>Karpathy's "treat it like an animal" idea, turned into a robot-librarian analogy so it's easy to follow.</li>
+          <li>Boris Cherny's real verification tip ("two to three x"), shown on screen as a quote, not paraphrased.</li>
+          <li>The closing prompt, pulled from your own screen: <span class="mono" style="color:var(--accent)">"Outline the evaluation criteria you will use to ensure a high-quality final product. Be precise."</span> Screenshot to use.</li>
+        </ul>
+        <a class="btn" href="./reel-1-the-verifier.html" target="_blank" rel="noopener">Open the storyboard <span class="arw">↗</span></a>
+      </div>
+    </div>
+
+    <!-- FEATURE 2 -->
+    <div class="feat">
+      <div class="rail">
+        <span class="railnum">02</span>
+        <span class="tag tofu">TOFU</span>
+        <div class="railmeta"><b>~66s</b> · 5 beats<br>POV / to camera</div>
+      </div>
+      <div class="body">
+        <div class="kicker">From: the same video (the closing point)</div>
+        <h3>The One Thing</h3>
+        <div class="quote">"You can outsource your thinking. You can't outsource your understanding."
+          <span class="who">Andrej Karpathy, verbatim. The line the reel builds to.</span></div>
+        <ul class="why">
+          <li>POV, to camera, you talking. A top-of-funnel reach idea to bring in new viewers.</li>
+          <li>A stat cut in the middle: "nearly 60% of new content online is low-quality AI." (Verify the exact number and source before filming.)</li>
+          <li>Built around Karpathy's real quote, no invented lines.</li>
+        </ul>
+        <a class="btn" href="./reel-2-the-one-thing.html" target="_blank" rel="noopener">Open the storyboard <span class="arw">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="num">02</span><h2 class="sectitle">Other ideas</h2></div>
+    <p class="secsub">The two above came from your Karpathy video. That video holds a full series, and your Anthropic video holds another. Here are the rest, each with a note on how it would be produced.</p>
+
+    <div class="slategroup">
+      <div class="grouplbl">Karpathy's Method <span class="src">// from "Stop Prompting Claude. Use Karpathy's Method"</span><span class="line"></span></div>
+      <div class="grid">
+        <div class="idea">
+          <div class="top"><span class="seq">Intro</span><span class="tag tofu">TOFU</span></div>
+          <h4>Meet Karpathy</h4>
+          <div class="concept">Who he is (ex-head of AI at Tesla), the "almost everyone is prompting Claude wrong" line, and the three-layer overview. The opener for the series.</div>
+          <div class="exec"><b>Production</b>Cold open on the contrarian line, then tease the three layers so viewers watch the next reels.</div>
+        </div>
+        <div class="idea">
+          <div class="top"><span class="seq">Layer 1</span><span class="tag mofu">MOFU</span></div>
+          <h4>The Spec</h4>
+          <div class="concept">Prompt the goal, not the task. Make the model interview you before it starts.</div>
+          <div class="exec"><b>Production</b>Real on-screen prompt from your video: "interview me to identify the goal of this project."</div>
+        </div>
+        <div class="idea">
+          <div class="top"><span class="seq">Layer 3</span><span class="tag mofu">MOFU</span></div>
+          <h4>The Environment</h4>
+          <div class="concept">Your data is your moat. CLAUDE.md plus a knowledge base plus skills, with an always / ask / never rule.</div>
+          <div class="exec"><b>Production</b>Your own repo on screen, calling out a couple of sections.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slategroup">
+      <div class="grouplbl">How Anthropic Engineers Prompt <span class="src">// from your Anthropic breakdown, a 4-part series</span><span class="line"></span></div>
+      <div class="grid">
+        <div class="idea">
+          <div class="top"><span class="seq">Part 1</span><span class="tag mofu">MOFU</span></div>
+          <h4>Prompt skills, not Claude</h4>
+          <div class="concept">The reframe that opens the series: stop tuning one-off prompts, build reusable skills.</div>
+          <div class="exec"><b>Production</b>Each reel ends on a hook into the next so the four connect.</div>
+        </div>
+        <div class="idea">
+          <div class="top"><span class="seq">Part 2</span><span class="tag mofu">MOFU</span></div>
+          <h4>Skills beat prompts</h4>
+          <div class="concept">Why a skill outperforms a prompt: it carries context, examples, and rules the model keeps.</div>
+          <div class="exec"><b>Production</b>One before/after, real prompt on screen.</div>
+        </div>
+        <div class="idea">
+          <div class="top"><span class="seq">Part 3</span><span class="tag mofu">MOFU</span></div>
+          <h4>Composable skills</h4>
+          <div class="concept">The pattern for stacking skills so they build on each other.</div>
+          <div class="exec"><b>Production</b>One named framework, one analogy, capped with the prompt.</div>
+        </div>
+        <div class="idea">
+          <div class="top"><span class="seq">Part 4</span><span class="tag mofu">MOFU</span></div>
+          <h4>Smarter every session</h4>
+          <div class="concept">The payoff: prompts that get sharper the more you use the system. The series closer.</div>
+          <div class="exec"><b>Production</b>Recap the four, then point to the next video.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slategroup">
+      <div class="grouplbl">Buyer-focused reel <span class="src">// for when you want the reels to point to your program</span><span class="line"></span></div>
+      <div class="grid">
+        <div class="idea">
+          <div class="top"><span class="seq">Concept</span><span class="tag bofu">BOFU</span></div>
+          <h4>Board of Advisers</h4>
+          <div class="concept">Aimed at buyers, not just viewers. Your COO background plus a system you can teach.</div>
+          <div class="exec"><b>Production</b>Ends with a soft pointer to your program. Run these sparingly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="num">03</span><h2 class="sectitle">How it would work each month</h2></div>
+    <p class="secsub">The same four steps each month. You pick the ideas and film; I do the writing and storyboards.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Four ideas, pitched</h4><p>Each with a short why, pulled from your existing videos.</p></div>
+      <div class="step"><div class="n">2</div><h4>You pick two</h4><p>I only script the ones you'd actually film.</p></div>
+      <div class="step"><div class="n">3</div><h4>Script + storyboard</h4><p>Both boarded shot by shot. Every prompt and quote sourced. Ready to film.</p></div>
+      <div class="step"><div class="n">4</div><h4>Notes back in 48h</h4><p>Your feedback in the scripts within two days. Two revision rounds each.</p></div>
+    </div>
+    <div class="cadence">
+      <span class="big tnum">12</span>
+      <span class="txt"><b>scripts a month. Three a week.</b><br>Storyboard and shot notes on every one.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="num">04</span><h2 class="sectitle">Working together</h2></div>
+    <div class="close-grid">
+      <div class="align">
+        <p>You pick the ideas and film. I handle the writing: research, scripts, storyboards, and shot notes. I work from your existing videos and keep everything in your voice.</p>
+        <p>The reels cover the full funnel. Reach ideas like <b>The One Thing</b> bring in new viewers. Teaching ideas like <b>The Verifier</b> and the two series build trust. A buyer-focused reel can point to your program when you want it.</p>
+        <p>Every prompt, quote, and stat on screen is real and traceable to one of your videos, or it gets a source locked in before you film.</p>
+      </div>
+      <div class="offer">
+        <div class="olbl">Proposal</div>
+        <div class="price">$5,000<small> / month</small></div>
+        <div class="terms">3-month minimum</div>
+        <ul>
+          <li><b>12 scripts</b> a month, 3 a week, in your voice</li>
+          <li><b>4 ideas per drop</b>, you pick, I script</li>
+          <li><b>Storyboard + shot notes</b> on every script</li>
+          <li><b>Notes back in 48 hours</b>, two revision rounds each</li>
+        </ul>
+        <div class="guar"><b>Guarantee:</b> if by the end of month one you don't have at least 8 scripts you're excited to film, I keep rewriting that batch until you do, or month two is on me.</div>
+        <div class="signoff">If this works, I'll start on your two picks.<br><b>Vince</b><div class="peace">Gascon.ai</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot"><span>Sample project · Austin Marchese</span><span class="dot"></span><span>2 scripts boarded · 8 ideas mapped</span><span class="dot"></span><span>all prompts and quotes sourced from your videos</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

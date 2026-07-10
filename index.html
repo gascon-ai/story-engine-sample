@@ -120,11 +120,15 @@
   .idea .exec b{color:var(--accent);font-weight:600;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
 
   /* ---- engine / execution ---- */
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:4px 0 26px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 26px;}
   .step{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px;position:relative;}
   .step .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-ink);background:var(--accent);width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;letter-spacing:0;}
-  .step h4{margin:15px 0 6px;font-size:16px;letter-spacing:-.015em;}
+  .step h4{margin:15px 0 8px;font-size:17px;letter-spacing:-.015em;}
   .step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5;}
+  .step ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;}
+  .step li{position:relative;padding-left:16px;font-size:13.5px;color:var(--muted);line-height:1.45;}
+  .step li::before{content:"";position:absolute;left:1px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent);}
+  @media (max-width:800px){ .steps{grid-template-columns:1fr;} }
   .cadence{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:18px 22px;background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:13px;}
   .cadence .big{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--accent);}
   .cadence .txt{font-size:14.5px;color:var(--fg);line-height:1.45;}
@@ -308,12 +312,35 @@
     <div class="sechead"><span class="num">03</span><h2 class="sectitle">How it would work each month</h2></div>
     <p class="secsub">The same rhythm each month. AI does the grunt work; we spend the time on the writing.</p>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h4>Ideas, married to trends</h4><p>Five ideas a week: your idea bank, mined from your videos, framed through what's trending right now. Each with the why.</p></div>
-      <div class="step"><div class="n">2</div><h4>You pick three + riff</h4><p>You pick the week's three, then riff on what you'd actually say. Your words become the material.</p></div>
-      <div class="step"><div class="n">3</div><h4>I write it</h4><p>The craft pass: the hook lab, the ordering, rewritten until it sounds like you. Every prompt and quote sourced.</p></div>
-      <div class="step"><div class="n">4</div><h4>Storyboard</h4><p>Boarded shot by shot, on-screen text and timing included. Filming is grab-and-go.</p></div>
-      <div class="step"><div class="n">5</div><h4>Final pass is yours</h4><p>You do the last voice pass. Notes back in 48h, two revision rounds each.</p></div>
-      <div class="step"><div class="n">6</div><h4>Monthly review</h4><p>Once a month we read the numbers: which hooks held, which topics pulled. It all feeds back into the system.</p></div>
+      <div class="step"><div class="n">1</div><h4>Ideas</h4><ul>
+        <li>5 ideas a week, mined from your videos</li>
+        <li>Framed through what's trending and in the news right now</li>
+        <li>Builds your pipeline: an idea bank months deep over time</li>
+      </ul></div>
+      <div class="step"><div class="n">2</div><h4>Pick three</h4><ul>
+        <li>You pick the week's three</li>
+        <li>Riff on what you'd actually say</li>
+        <li>Your words become the material</li>
+      </ul></div>
+      <div class="step"><div class="n">3</div><h4>I write it</h4><ul>
+        <li>The hook, locked first</li>
+        <li>The structure and ordering</li>
+        <li>Rewritten until it sounds like you, your riff notes in</li>
+        <li>Every prompt and quote sourced</li>
+      </ul></div>
+      <div class="step"><div class="n">4</div><h4>Storyboard</h4><ul>
+        <li>Shot by shot, with my notes on how it should look</li>
+        <li>Timing included</li>
+        <li>You film and edit</li>
+      </ul></div>
+      <div class="step"><div class="n">5</div><h4>Your final pass</h4><ul>
+        <li>The last voice pass is yours, then I hand it off</li>
+        <li>Notes back in 48h, two revision rounds each</li>
+      </ul></div>
+      <div class="step"><div class="n">6</div><h4>Monthly review</h4><ul>
+        <li>We read the numbers: which hooks held, which topics pulled</li>
+        <li>It all feeds back into the system</li>
+      </ul></div>
     </div>
     <div class="cadence">
       <span class="big tnum">12</span>

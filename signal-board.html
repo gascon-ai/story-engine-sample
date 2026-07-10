@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Pre-Work - Signal Board | Gascon.ai</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22%3E%3Ctext%20y=%22.9em%22%20font-size=%2290%22%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ink:#0E0F12; --surface:#16181D; --surface-2:#1C1F26; --line:#292C34;
+    --fg:#EAEBEE; --muted:#979BA4; --faint:#6C7079;
+    --accent:#F6B23C; --accent-ink:#0E0F12; --accent-dim:rgba(246,178,60,.13); --accent-line:rgba(246,178,60,.34);
+    --keep:#6FBF87; --drop:#C77166; --keep-dim:rgba(111,191,135,.13); --drop-dim:rgba(199,113,102,.13);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --ink:#F4F3EF; --surface:#FFFFFF; --surface-2:#FBFAF6; --line:#E5E3DC;
+      --fg:#1A1B1F; --muted:#63676F; --faint:#8A8E96;
+      --accent:#B96E12; --accent-ink:#FFFFFF; --accent-dim:rgba(185,110,18,.10); --accent-line:rgba(185,110,18,.30);
+      --keep:#3C8B58; --drop:#AF534A; --keep-dim:rgba(60,139,88,.10); --drop-dim:rgba(175,83,74,.10);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#0E0F12; --surface:#16181D; --surface-2:#1C1F26; --line:#292C34;
+    --fg:#EAEBEE; --muted:#979BA4; --faint:#6C7079;
+    --accent:#F6B23C; --accent-ink:#0E0F12; --accent-dim:rgba(246,178,60,.13); --accent-line:rgba(246,178,60,.34);
+    --keep:#6FBF87; --drop:#C77166; --keep-dim:rgba(111,191,135,.13); --drop-dim:rgba(199,113,102,.13);
+  }
+  :root[data-theme="light"]{
+    --ink:#F4F3EF; --surface:#FFFFFF; --surface-2:#FBFAF6; --line:#E5E3DC;
+    --fg:#1A1B1F; --muted:#63676F; --faint:#8A8E96;
+    --accent:#B96E12; --accent-ink:#FFFFFF; --accent-dim:rgba(185,110,18,.10); --accent-line:rgba(185,110,18,.30);
+    --keep:#3C8B58; --drop:#AF534A; --keep-dim:rgba(60,139,88,.10); --drop-dim:rgba(175,83,74,.10);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--sans);
+    line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px);}
+
+  /* type */
+  h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em;font-weight:800;}
+  a{color:inherit;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+  .muted{color:var(--muted);}
+  .faint{color:var(--faint);}
+
+  /* masthead */
+  header.mast{border-bottom:1px solid var(--line);padding:clamp(40px,7vw,84px) 0 clamp(28px,4vw,44px);}
+  .kicker{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;}
+  h1.title{font-size:clamp(30px,6vw,60px);line-height:1.02;margin:20px 0 0;}
+  h1.title .accent{color:var(--accent);}
+  .thesis{margin-top:22px;max-width:60ch;font-size:clamp(16px,2.1vw,20px);line-height:1.5;color:var(--fg);}
+  .thesis b{color:var(--accent);font-weight:700;}
+  .mast-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;padding:6px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted);white-space:nowrap;}
+  .chip b{color:var(--fg);font-weight:600;}
+
+  /* section scaffolding */
+  section{padding:clamp(38px,5.5vw,64px) 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:26px;flex-wrap:wrap;}
+  .sec-no{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em;}
+  h2.sec-title{font-size:clamp(21px,3vw,30px);}
+  .sec-sub{color:var(--muted);max-width:64ch;margin-top:8px;font-size:15px;}
+
+  /* 3-layer spine */
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .layer{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;position:relative;overflow:hidden;}
+  .layer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.5;}
+  .layer .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .layer h3{font-size:18px;margin:10px 0 8px;}
+  .layer p{margin:0;font-size:14px;color:var(--muted);line-height:1.5;}
+  .layer .who{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--fg);}
+
+  /* data table */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px;}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;position:sticky;top:0;background:var(--surface-2);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.rank{font-family:var(--mono);color:var(--faint);width:34px;}
+  td .vid{font-weight:600;color:var(--fg);}
+  td .concept{color:var(--muted);font-size:13px;display:block;margin-top:3px;line-height:1.45;}
+  .metric{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--fg);}
+  .xr{font-family:var(--mono);font-size:12px;color:var(--accent);margin-left:2px;}
+  /* outlier bar */
+  .bar-cell{width:170px;}
+  .bar-track{height:7px;background:var(--surface-2);border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+  .bar-fill{height:100%;background:linear-gradient(90deg,var(--accent-line),var(--accent));border-radius:4px;}
+
+  /* verdict chips */
+  .v{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:4px 9px;border-radius:6px;white-space:nowrap;font-weight:600;}
+  .v.keep{color:var(--keep);background:var(--keep-dim);border:1px solid color-mix(in srgb,var(--keep) 40%,transparent);}
+  .v.bar{color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-line);}
+  .v.ref{color:var(--muted);background:var(--surface-2);border:1px solid var(--line);}
+
+  /* scoreboard cards */
+  .board{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+  .pc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;}
+  .pc.north{border-color:var(--accent-line);background:linear-gradient(180deg,var(--accent-dim),transparent 60%),var(--surface);}
+  .pc .h{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+  .pc .handle{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--fg);}
+  .pc .floor{margin-top:2px;}
+  .pc .floor .big{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--fg);display:block;line-height:1;}
+  .pc .floor .cap{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:6px;}
+  .pc .top{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:11px;line-height:1.45;}
+  .pc .top .tv{font-family:var(--mono);color:var(--accent);font-weight:600;}
+  .pc .note{font-size:12.5px;color:var(--faint);line-height:1.45;}
+
+  /* language bank */
+  .bank{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .bank .col{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;}
+  .bank .col h3{font-size:13px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+  .bank .col.desire h3{color:var(--keep);}
+  .bank .col.pain h3{color:var(--drop);}
+  .bank .col.phrase h3{color:var(--accent);}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{font-size:12.5px;padding:5px 10px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line);color:var(--fg);line-height:1.3;}
+  .bank .phrase .tag{font-family:var(--mono);font-size:11.5px;}
+
+  /* idea menu */
+  .grp{margin-top:8px;}
+  .grp-head{display:flex;align-items:baseline;gap:12px;margin:30px 0 16px;padding-bottom:10px;border-bottom:1px dashed var(--line);}
+  .grp-head .g{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.08em;}
+  .grp-head h3{font-size:17px;}
+  .grp-head .gsub{color:var(--faint);font-size:13px;}
+  .ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+  .idea{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:11px;}
+  .idea.star{border-color:var(--accent-line);}
+  .idea .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .idea .id{font-family:var(--mono);font-size:12px;color:var(--faint);}
+  .idea .star-tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--accent-ink);background:var(--accent);padding:3px 7px;border-radius:5px;font-weight:700;}
+  .idea h4{font-size:16px;font-weight:700;line-height:1.25;margin:0;letter-spacing:-.01em;}
+  .idea .src{font-size:12.5px;color:var(--muted);}
+  .idea .src .sv{font-family:var(--mono);color:var(--accent);font-weight:600;}
+  .idea .why{font-size:13.5px;color:var(--fg);line-height:1.5;}
+  .idea .seedbox{background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:11px 12px;}
+  .idea .seedbox .sl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:6px;}
+  .idea .seedbox p{margin:0 0 6px;font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;}
+  .idea .seedbox p:last-child{margin-bottom:0;}
+  .idea .shape{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.02em;}
+  .idea .shape b{color:var(--fg);font-weight:600;}
+
+  /* watch list */
+  .watch-grp{margin-bottom:24px;}
+  .watch-grp .wg-lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  .wrow{display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:8px;text-decoration:none;transition:border-color .15s,background .15s;}
+  .wrow:hover{border-color:var(--accent-line);background:var(--surface-2);}
+  .wrow .wv{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--accent);min-width:82px;text-align:right;font-weight:600;}
+  .wrow .wh{flex:1;font-size:13.5px;color:var(--fg);line-height:1.4;}
+  .wrow .wgo{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;}
+  .wrow.nolink{cursor:default;}
+  .wrow.nolink:hover{border-color:var(--line);background:var(--surface);}
+  .watch-note{font-size:12.5px;color:var(--faint);margin-top:4px;line-height:1.5;}
+
+  /* callout / bar quote */
+  .callout{background:var(--surface);border:1px solid var(--accent-line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 22px;margin-top:18px;}
+  .callout .q{font-size:17px;line-height:1.45;font-weight:600;color:var(--fg);}
+  .callout .a{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.03em;}
+
+  /* footer */
+  footer{padding:clamp(40px,6vw,72px) 0 clamp(60px,8vw,96px);}
+  .foot-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4vw,36px);}
+  .foot-card h2{font-size:clamp(20px,3vw,26px);}
+  .foot-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:22px;counter-reset:step;}
+  .fstep{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .fstep .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;}
+  .fstep p{margin:8px 0 0;font-size:13.5px;color:var(--muted);line-height:1.45;}
+  .fstep b{color:var(--fg);font-weight:600;}
+  .signoff{margin-top:24px;font-size:13px;color:var(--faint);font-family:var(--mono);}
+
+  @media (max-width:820px){
+    .layers{grid-template-columns:1fr;}
+    .bank{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;}
+    @keyframes rise{to{opacity:1;transform:none;}}
+  }
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="kicker reveal">
+      <span class="dot"></span> Gascon.ai · Content Intelligence
+      <span class="faint">// the pre-work behind the sample</span>
+      <span class="faint">// 2026-07-09</span>
+    </div>
+    <h1 class="title reveal">Austin Marchese<br><span class="accent">Short-Form Signal Board</span></h1>
+    <p class="thesis reveal">Austin has <b>85 videos, zero shorts</b>, and the pain his biggest video solves, AI forgetting between sessions, is the single <b>best-performing hook in his entire niche</b>. That gap is the opportunity. This board is the raw material behind the four ideas, reverse-engineered from real data on his channel, his north star, and the five creators already winning in his lane.</p>
+    <div class="mast-meta reveal">
+      <span class="chip">THE ASK · <b>4 ideas + why each</b>, he picks 2 to script</span>
+      <span class="chip">THE FORMAT · <b>60-72s reels</b>, in his voice, Kallaway-styled</span>
+      <span class="chip">THE BAR · <b>"gas scripts or I won't film it"</b></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <div>
+        <h2 class="sec-title">The three layers</h2>
+        <p class="sec-sub">Every script is built from three inputs: shaped like the bar, proven in the niche, sourced from what Austin has already proven pulls.</p>
+      </div>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <span class="lab">The Bar · shape</span>
+        <h3>Kallaway anatomy</h3>
+        <p>One hook = single subject + single stakes claim, aligned across visual, spoken and text. A Dopamine-Ladder body with a "here's the crazy part" beat every 10-15s. A familiar-thing analogy. 170-230 words, 47-90s.</p>
+        <div class="who">↳ the ceiling every script is measured against</div>
+      </div>
+      <div class="layer">
+        <span class="lab">The Niche · proof</span>
+        <h3>The tight 5</h3>
+        <p>buildwithcody · nick_saraev · aiwithremy · alassafi.ai · minolee.mp4. They validate which angles and formats already print in AI-education short-form, and prove the Claude-first tailwind (~24:1 over ChatGPT in comments).</p>
+        <div class="who">↳ what's already winning in his lane</div>
+      </div>
+      <div class="layer">
+        <span class="lab">The Source · material</span>
+        <h3>Austin's proven concepts</h3>
+        <p>His breakout-era median is 22,244 views (Apr 2026 on), with winners to 619,813 (27.9x). We repurpose the concepts with the most proven pull, plus the operator stories he's never told in short-form.</p>
+        <div class="who">↳ the material we actually script from</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <div>
+        <h2 class="sec-title">Who the reel talks to</h2>
+        <p class="sec-sub">Austin monetizes a funnel, not just an audience. So the reels use Kallaway's shape but aim at his buyer, not just the biggest number. Two overlapping people:</p>
+      </div>
+    </div>
+    <div class="layers" style="grid-template-columns:repeat(auto-fit,minmax(270px,1fr));">
+      <div class="layer">
+        <span class="lab">The Viewer · reach</span>
+        <h3>The AI-native operator</h3>
+        <p>25-45, founder / consultant / ambitious exec. Uses Claude daily, not an engineer. Wants leverage and "the exact system"; fears being "not technical enough" and "behind." Watches, shares, buys the $7 skills product + Build Partner.</p>
+        <div class="who">↳ pull broadly · tactical + demo-able</div>
+      </div>
+      <div class="layer">
+        <span class="lab">The Buyer · the money</span>
+        <h3>The non-technical founder / exec</h3>
+        <p>Runs a real business, has budget, won't become a developer. Wants AI installed in ops, a "pseudo fractional COO." Trusts proof Austin has actually operated: the $20M-COO story, JPMorgan, the $400K-app receipt. Funds the executive AI program.</p>
+        <div class="who">↳ seed the worldview · differentiate on receipts</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="q">Reel → newsletter / $7 skills → Build Partner → executive AI program <span style="color:var(--accent)">(the money)</span></div>
+      <div class="a">↳ the reel's job: pull the viewer broadly, seed the buyer's worldview so the funnel fills underneath</div>
+    </div>
+    <p class="watch-note" style="margin-top:16px;"><b>The sharpening:</b> frame every tactic as an outcome an operator cares about (leverage, decisions, ops, cost), not a dev trick · lead some hooks on the fear, not just the desire · bias to "shown, not told." &nbsp;<b>Selection rule for the 4:</b> ~2 builder-reach (A1, A2, A7, A3) + ~1 operator-bridge (B1, B2, A8, C3) + 1 wildcard.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">03</span>
+      <div>
+        <h2 class="sec-title">Austin's proven concepts, ranked</h2>
+        <p class="sec-sub">His highest-pull YouTube concepts, the source material for repurposing. Outlier = views ÷ his breakout-era median (22,244).</p>
+      </div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Source video</th><th>Views</th><th class="bar-cell">Outlier</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank">1</td><td><span class="vid">Stop Prompting Claude. Use Karpathy's Method</span><span class="concept">A folder system that ingests your own data so context compounds ("your data is your moat")</span></td><td class="metric">619,813</td><td><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="xr">27.9x</span></td></tr>
+          <tr><td class="rank">2</td><td><span class="vid">How Anthropic Engineers ACTUALLY Prompt Claude Code</span><span class="concept">Skills have 3 layers, most people stop at layer 2; Anthropic builds layer 3 (tools)</span></td><td class="metric">520,474</td><td><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div><span class="xr">23.4x</span></td></tr>
+          <tr><td class="rank">3</td><td><span class="vid">How Claude Code's Creator Starts EVERY Project</span><span class="concept">Boris Cherny's verification principle: let Claude see its own output → 2-3x quality</span></td><td class="metric">308,700</td><td><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="xr">13.9x</span></td></tr>
+          <tr><td class="rank">4</td><td><span class="vid">Paste This Into Claude, Build 10x Faster</span><span class="concept">One copy-paste mega-prompt that sets up 3 systems at once</span></td><td class="metric">155,365</td><td><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div><span class="xr">7.0x</span></td></tr>
+          <tr><td class="rank">5</td><td><span class="vid">Stop Watching Tutorials - 4 Claude Projects</span><span class="concept">The Board of Advisers project, carries the $20M-raise COO story</span></td><td class="metric">111,409</td><td><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="xr">5.0x</span></td></tr>
+          <tr><td class="rank">6</td><td><span class="vid">Stop Prompting Claude. Start Loop Engineering</span><span class="concept">"My job is to write loops" + the 4-condition loop test</span></td><td class="metric">81,931</td><td><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="xr">3.7x</span></td></tr>
+          <tr><td class="rank">7</td><td><span class="vid">9 Claude Code Plugins to Build 10x Faster</span><span class="concept">"$200/mo Max plan, ~$1,800 in actual token cost" reveal</span></td><td class="metric">52,683</td><td><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="xr">2.4x</span></td></tr>
+          <tr><td class="rank">8</td><td><span class="vid">You're the Problem, Not Claude <span class="faint">(freshest)</span></span><span class="concept">Sculptor vs. Gardener, the tightest single metaphor on the channel</span></td><td class="metric">11,277</td><td><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="xr">new</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <div class="q">Across all 85 videos there is no standalone origin or story video. Austin's real operator receipts, COO who raised $20M+, JPMorgan, a non-technical founder he helped ship a $400K/yr app in 45 days, only ever surface as one-sentence asides.</div>
+      <div class="a">↳ the biggest untapped angle: the proof no other Claude creator can claim, sitting unmined</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">04</span>
+      <div>
+        <h2 class="sec-title">The niche scoreboard</h2>
+        <p class="sec-sub">Real Apify metrics. Ranked by median floor (consistency), not one-off spikes. Kallaway sits above as the bar.</p>
+      </div>
+    </div>
+    <div class="board">
+      <div class="pc north">
+        <div class="h"><span class="handle">@kallaway</span><span class="v bar">THE BAR</span></div>
+        <div class="floor"><span class="big">7.0M</span><span class="cap">top reel · views</span></div>
+        <div class="top">"Russian engineer built a real-life Ironman suit" <span class="tv">7,047,117</span>. The ceiling above the niche, different tier, the anatomy every script targets.</div>
+      </div>
+      <div class="pc">
+        <div class="h"><span class="handle">@nick_saraev</span><span class="v keep">KEEP</span></div>
+        <div class="floor"><span class="big">100,064</span><span class="cap">median floor</span></div>
+        <div class="top">Top: "run Claude Code free forever" <span class="tv">786,217</span>. The benchmark, elite hook craft on a six-figure floor.</div>
+      </div>
+      <div class="pc">
+        <div class="h"><span class="handle">@minolee.mp4</span><span class="v keep">KEEP</span></div>
+        <div class="floor"><span class="big">61,604</span><span class="cap">median floor</span></div>
+        <div class="top">Top: "road to $100k/mo, the finale" <span class="tv">656,744</span>. Highest floor in the set. Emotion-first hook framework.</div>
+      </div>
+      <div class="pc">
+        <div class="h"><span class="handle">@buildwithcody</span><span class="v keep">KEEP</span></div>
+        <div class="floor"><span class="big">29,621</span><span class="cap">median floor</span></div>
+        <div class="top">Top: <span class="tv">1,736,468</span> (1.74M ceiling). Claude-first (0 GPT), does Austin's exact motion. Weak hooks = the scriptwriter's lift.</div>
+      </div>
+      <div class="pc">
+        <div class="h"><span class="handle">@aiwithremy</span><span class="v keep">KEEP</span></div>
+        <div class="floor"><span class="big">12,928</span><span class="cap">median floor</span></div>
+        <div class="top">Top: <span class="tv">680,061</span>. The only original pick winning organically, not CTA-gated. Closest-to-Kallaway of the first batch.</div>
+      </div>
+      <div class="pc">
+        <div class="h"><span class="handle">@alassafi.ai</span><span class="v keep">KEEP</span></div>
+        <div class="floor"><span class="big">8,014</span><span class="cap">median floor</span></div>
+        <div class="top">Top: "your AI resets every session" <span class="tv">534,369</span> in 9 seconds (66.7x). The tightest Kallaway shape in the niche.</div>
+      </div>
+    </div>
+    <p class="watch-note">Also studied for craft, not niche: <b>briarcochran</b> (short-form structure) and <b>Kallaway's</b> two teaching videos. Dropped: justyn.ai, adamstewartmarketing, valeridoesai, chase.h.ai, nateherkai.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">05</span>
+      <div>
+        <h2 class="sec-title">Audience language bank</h2>
+        <p class="sec-sub">The exact words the niche audience types, pulled from competitor comment mining. Hooks get written in their words, not ours.</p>
+      </div>
+    </div>
+    <div class="bank">
+      <div class="col desire">
+        <h3>Desires</h3>
+        <div class="tags">
+          <span class="tag">"the exact system / prompt / repo"</span>
+          <span class="tag">"second brain"</span>
+          <span class="tag">"set it and forget it"</span>
+          <span class="tag">"on autopilot"</span>
+          <span class="tag">"let AI handle ops"</span>
+          <span class="tag">"10x your AI sessions"</span>
+          <span class="tag">"the right 5 skills replace half your workflow"</span>
+          <span class="tag">"build it first, whoever builds wins"</span>
+          <span class="tag">"match effort to task, cut costs 50-70%"</span>
+          <span class="tag">"ownership pays you for judgment"</span>
+        </div>
+      </div>
+      <div class="col pain">
+        <h3>Pains</h3>
+        <div class="tags">
+          <span class="tag">AI memory loss (the #1 pain)</span>
+          <span class="tag">"resetting every session… gone"</span>
+          <span class="tag">beginner overwhelm / "still confused"</span>
+          <span class="tag">token cost ballooning</span>
+          <span class="tag">slop &amp; hype fatigue</span>
+          <span class="tag">"sounds scammy"</span>
+          <span class="tag">"too late / not technical enough"</span>
+          <span class="tag">"I feel behind"</span>
+        </div>
+      </div>
+      <div class="col phrase">
+        <h3>Exact phrases they type</h3>
+        <div class="tags">
+          <span class="tag">"How did you build this?"</span>
+          <span class="tag">"Can you share the prompt?"</span>
+          <span class="tag">"seeing people actually build…"</span>
+          <span class="tag">"agent org chart"</span>
+          <span class="tag">"Claude skills"</span>
+          <span class="tag">"the model isn't the moat"</span>
+          <span class="tag">"vibecoding"</span>
+          <span class="tag">"clawdbot to cash"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">06</span>
+      <div>
+        <h2 class="sec-title">The idea menu</h2>
+        <p class="sec-sub">Fifteen candidate angles, ranked strongest-first. Pick four. Hook seeds are raw directions in the audience's language, to be rewritten in Austin's voice, not shipped as-is.</p>
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="grp-head"><span class="g">A</span><h3>Repurpose winners</h3><span class="gsub">from his proven videos</span></div>
+      <div class="ideas">
+
+        <div class="idea star">
+          <div class="top"><span class="id">A1</span><span class="star-tag">#1 PICK</span></div>
+          <h4>The 3-folder fix so Claude stops forgetting</h4>
+          <div class="src">Source: <span class="sv">Karpathy's Method · 619,813 · 27.9x</span></div>
+          <div class="why">Highest-proof source on the channel, married to the single best-performing pain in the niche. Hits "second brain" desire and "resets every session" pain dead-center.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Claude forgets everything the second you close the chat. Karpathy fixed it with three folders."</p><p>"Your AI has amnesia. Here's the 3-folder memory that makes it compound."</p></div>
+          <div class="shape">Shape: <b>single-number demo</b> + one "crazy part" beat</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A2</span></div>
+          <h4>You're building Claude skills wrong, you stopped at layer 2 of 3</h4>
+          <div class="src">Source: <span class="sv">Anthropic Engineers · 520,474 · 23.4x</span></div>
+          <div class="why">2nd-highest-proof source, and the niche just validated the frame: nick_saraev's "100,000 skills but you only need five" hit 487K. Contrarian gap = instant captivation.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Everyone's building Claude skills that stop at layer 2. Anthropic's engineers build the third."</p><p>"Your skills underperform because you skipped the layer Anthropic obsesses over."</p></div>
+          <div class="shape">Shape: <b>Dopamine-ladder teach</b>, 3 layers = 3 re-hooks</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A3</span></div>
+          <h4>The one line that 2-3x's Claude's output quality</h4>
+          <div class="src">Source: <span class="sv">Boris / Starts EVERY Project · 308,700 · 13.9x</span></div>
+          <div class="why">A single quotable number from a named authority = the purest single-number Kallaway shape, which nick_saraev proves is the niche's best hook writing.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"The creator of Claude Code adds one sentence to every project. It 2-3x's the output."</p><p>"One line in your CLAUDE.md doubles Claude's quality. Almost nobody writes it."</p></div>
+          <div class="shape">Shape: <b>single-number demo</b>, before/after on screen</div>
+        </div>
+
+        <div class="idea star">
+          <div class="top"><span class="id">A4</span><span class="star-tag">KALLAWAY-PERFECT</span></div>
+          <h4>Sculptor vs. Gardener</h4>
+          <div class="src">Source: <span class="sv">You're the Problem, Not Claude · freshest</span></div>
+          <div class="why">Kallaway's model rewards ONE clean metaphor that needs zero setup ("Uber Eats for the Sun" did it in 4 words). This is the single clearest metaphor Austin has.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"You're using AI like a sculptor. That's why you're stuck. You need to be a gardener."</p><p>"Sculptors carve one statue. Gardeners plant a system and harvest forever."</p></div>
+          <div class="shape">Shape: <b>contrarian reframe</b> on the single metaphor</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A5</span></div>
+          <h4>"I don't prompt Claude anymore", loop engineering</h4>
+          <div class="src">Source: <span class="sv">Loop Engineering · 81,931 · 3.7x</span></div>
+          <div class="why">A killer quote + contrarian identity flip, the exact style aiwithremy's organic winners use ("why I uninstalled OpenClaw" 320K). The 4-condition test is a clean payload.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"I stopped prompting Claude months ago. Now I only write loops."</p><p>"Prompting is the amateur move. Here's the 4-question test before you automate anything."</p></div>
+          <div class="shape">Shape: <b>contrarian reframe</b> → 4-condition checklist</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A6</span></div>
+          <h4>"$200/month Claude is secretly costing $1,800"</h4>
+          <div class="src">Source: <span class="sv">9 Plugins · 52,683 · 2.4x</span></div>
+          <div class="why">The best screenshot-and-share number on the channel, and the niche explicitly discusses cost ("match effort to task"). A surprising number is its own captivation.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"I pay $200 a month for Claude. It's actually burning $1,800 in tokens. Here's why that's good."</p><p>"The $200 Claude plan is the most underpriced thing in tech."</p></div>
+          <div class="shape">Shape: <b>single-number demo</b>, the token dashboard</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A7</span></div>
+          <h4>Paste this one prompt, watch it build 3 systems</h4>
+          <div class="src">Source: <span class="sv">Paste This Into Claude · 155,365 · 7.0x</span></div>
+          <div class="why">Proven "paste this" format + the niche's most-typed request ("share the prompt?"). valeri proves the pure-demo build reel scales (869K). Minimal talking head, maximum "how."</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Paste this one prompt into Claude and it builds three systems while you watch."</p><p>"One prompt. Three systems. Zero setup."</p></div>
+          <div class="shape">Shape: <b>pure screen-demo</b>, paste → runs → builds</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">A8</span></div>
+          <h4>Let Claude work while you sleep, safely (3-bucket system)</h4>
+          <div class="src">Source: <span class="sv">Self-Improving System · 44,096 · 2.0x</span></div>
+          <div class="why">Pairs the "set it and forget it" desire with the safety objection execs actually have, in one frame. Clean numbered payload = a natural re-hook ladder.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Everyone's scared to let AI run on its own. This 3-bucket rule makes it safe."</p><p>"Claude can work while you sleep. The trick is sorting every task into three buckets."</p></div>
+          <div class="shape">Shape: <b>Dopamine-ladder teach</b>, one example per bucket</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="grp-head"><span class="g">B</span><h3>Untapped personal-story angles</h3><span class="gsub">net-new · no video like this exists yet</span></div>
+      <div class="ideas">
+
+        <div class="idea star">
+          <div class="top"><span class="id">B1</span><span class="star-tag">BIGGEST DIFFERENTIATOR</span></div>
+          <h4>"I ran this exact system as a $20M-raise COO"</h4>
+          <div class="src">Source: <span class="sv">net-new · board-of-advisers</span></div>
+          <div class="why">The one thing no other Claude creator can say, real operator receipts, not theory. alassafi's "Comment BOARD" reel hit 134K; minolee proves identity-first hooks own the highest floor.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"I used to make $20M-company decisions with a board of advisers. Now I rebuilt them inside Claude."</p><p>"Before content, I was a COO who raised $20M. This is the decision system I ran."</p></div>
+          <div class="shape">Shape: <b>story open</b> → the /ask the board mechanic</div>
+        </div>
+
+        <div class="idea star">
+          <div class="top"><span class="id">B2</span><span class="star-tag">#6 SHORTLIST</span></div>
+          <h4>The non-technical founder who out-built his own engineers in 45 days</h4>
+          <div class="src">Source: <span class="sv">net-new · $400K/yr app story</span></div>
+          <div class="why">Answers the loudest audience anxiety ("too late / not technical enough") with a concrete receipt. buildwithcody's audience hungers for "seeing people actually build."</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"A non-technical founder just out-built his own engineering team in 45 days. Here's how."</p><p>"He can't code. In 45 days he shipped a $400K-a-year app. His engineers couldn't."</p></div>
+          <div class="shape">Shape: <b>story cold-open</b> → the 3 rules</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">B3</span></div>
+          <h4>The origin arc, "COO who raised $20M, now teaches Claude"</h4>
+          <div class="src">Source: <span class="sv">net-new · no origin video exists</span></div>
+          <div class="why">minolee's two biggest reels are literally "DAY 1" and "the finale" of a documented journey (656K). Austin has a genuine arc and has never told it in short-form.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Three years ago I was a COO raising $20M. Today I teach people to build with Claude."</p><p>"I left a $20M startup to make YouTube videos. Everyone thought I was insane."</p></div>
+          <div class="shape">Shape: <b>story</b>, documented-journey framing</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">B4</span></div>
+          <h4>"At JPMorgan I deleted so much bull", the delete framework</h4>
+          <div class="src">Source: <span class="sv">net-new · JPMorgan + Elon 5-step</span></div>
+          <div class="why">A credibility flex + contrarian truth (most process should be deleted, not automated). The "slop / too many tools" fatigue is a live niche pain. Elon's 5-step is a clean payload.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"At JPMorgan I deleted more than I ever built. Same rule runs my AI now."</p><p>"Before you automate anything, delete it. I learned that burning process at JPMorgan."</p></div>
+          <div class="shape">Shape: <b>contrarian reframe</b> → the 5 steps</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="grp-head"><span class="g">C</span><h3>Niche-proven formats to adapt</h3><span class="gsub">shapes already printing in the lane</span></div>
+      <div class="ideas">
+
+        <div class="idea">
+          <div class="top"><span class="id">C1</span></div>
+          <h4>The stat reveal, where the AI money actually is</h4>
+          <div class="src">Source: <span class="sv">T-shaped moat · "49.7% in one category"</span></div>
+          <div class="why">Austin's OWN best IG format was a stat-reveal, "The numbers" rice-grains visual hit 178,445 (156x) on his dead IG. A single surprising stat is a proven visual hook.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"Half of all AI tools are chasing the same market. The other half is wide open, and empty."</p><p>"Everyone's building AI in the same corner. Here's the 50% nobody's touching."</p></div>
+          <div class="shape">Shape: <b>single-visual-metaphor demo</b>, the stat is the hook</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">C2</span></div>
+          <h4>The $481K product built by "vibe coding"</h4>
+          <div class="src">Source: <span class="sv">Compound Engineering loop · $481,000</span></div>
+          <div class="why">A concrete revenue receipt = the "shown not told" proof the niche craves. buildwithcody's "clawdbot to cash" lane (1.74M ceiling) proves build-to-money stories pull.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"This product made $481,000 and I never really wrote the code. I wrote a loop."</p><p>"$481K from a vibe-coded app. The whole thing was one 4-step loop."</p></div>
+          <div class="shape">Shape: <b>story + single-number</b>, the Plan→Work→Review→Compound loop</div>
+        </div>
+
+        <div class="idea">
+          <div class="top"><span class="id">C3</span></div>
+          <h4>"Everyone's a CEO now", 6 ways to manage your AI like a hire</h4>
+          <div class="src">Source: <span class="sv">Garry Tan quote · Don't Start ANY Project</span></div>
+          <div class="why">Reframes the exec audience's identity (Austin's stated ICP) and "onboard AI like a hire" maps to the "let AI handle ops" desire. Named payload = the niche's proven build-hook.</div>
+          <div class="seedbox"><span class="sl">Hook seeds</span><p>"You're not a Claude user anymore. You're a CEO managing an employee that never sleeps."</p><p>"Stop using AI like a tool. Start managing it like your first hire. Six moves."</p></div>
+          <div class="shape">Shape: <b>Dopamine-ladder teach</b>, 6 named moves</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">07</span>
+      <div>
+        <h2 class="sec-title">Watch list</h2>
+        <p class="sec-sub">Watch the actual winners before writing, don't work from summaries. Grouped by the three layers. Real links where the data had them; where it didn't, the handle + hook to find it.</p>
+      </div>
+    </div>
+
+    <div class="watch-grp">
+      <div class="wg-lab">The Bar · Kallaway (watch the layering + hook craft)</div>
+      <a class="wrow" href="https://www.instagram.com/reel/DAi1lWIPFuB/" target="_blank" rel="noopener"><span class="wv">7,047,117</span><span class="wh">"This Russian engineer built a real-life Ironman suit in his garage."</span><span class="wgo">open ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/reel/DA8kxupvEzk/" target="_blank" rel="noopener"><span class="wv">5,385,421</span><span class="wh">"This company lets you order sunlight from an app." ("It's like Uber Eats for the Sun")</span><span class="wgo">open ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/reel/DCEseIrPwEx/" target="_blank" rel="noopener"><span class="wv">2,742,731</span><span class="wh">"The tech in the Vegas Sphere… the screen is the least impressive part."</span><span class="wgo">open ↗</span></a>
+      <p class="watch-note">Plus his two teaching videos on @kallawaymarketing YouTube: "How to Create a Killer Hook (Impossible to Skip)" and "How to Become a Storytelling Genius (Dopamine Ladders)".</p>
+    </div>
+
+    <div class="watch-grp">
+      <div class="wg-lab">The Source · Austin's own YouTube (watch how he teaches the concept)</div>
+      <a class="wrow" href="https://www.youtube.com/watch?v=7zZy1QTvokM" target="_blank" rel="noopener"><span class="wv">619,813</span><span class="wh">Stop Prompting Claude. Use Karpathy's Method Instead.</span><span class="wgo">watch ↗</span></a>
+      <a class="wrow" href="https://www.youtube.com/watch?v=qOvc9IUKEIc" target="_blank" rel="noopener"><span class="wv">520,474</span><span class="wh">How Anthropic Engineers ACTUALLY Prompt Claude Code</span><span class="wgo">watch ↗</span></a>
+      <a class="wrow" href="https://www.youtube.com/watch?v=KWrsLqnB6vA" target="_blank" rel="noopener"><span class="wv">308,700</span><span class="wh">How Claude Code's Creator Starts EVERY Project</span><span class="wgo">watch ↗</span></a>
+      <a class="wrow" href="https://www.youtube.com/watch?v=TP73qyFWDcY" target="_blank" rel="noopener"><span class="wv">155,365</span><span class="wh">Paste This Into Claude, It'll Make You Build 10x Faster.</span><span class="wgo">watch ↗</span></a>
+      <a class="wrow" href="https://www.youtube.com/watch?v=YAS4ojuhbW4" target="_blank" rel="noopener"><span class="wv">81,931</span><span class="wh">Stop Prompting Claude. Start Loop Engineering.</span><span class="wgo">watch ↗</span></a>
+    </div>
+
+    <div class="watch-grp">
+      <div class="wg-lab">The Niche · the tight 5 (find each by hook + date on the profile)</div>
+      <a class="wrow" href="https://www.instagram.com/buildwithcody/" target="_blank" rel="noopener"><span class="wv">1,736,468</span><span class="wh">buildwithcody · also watch "OpenClaw can use the Peekaboo skill to see your screen" (353K)</span><span class="wgo">profile ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/nick_saraev/" target="_blank" rel="noopener"><span class="wv">786,217</span><span class="wh">nick_saraev · "You can now run Claude Code completely free, forever."</span><span class="wgo">profile ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/aiwithremy/" target="_blank" rel="noopener"><span class="wv">680,061</span><span class="wh">aiwithremy · plus his organic hits "why I uninstalled OpenClaw" (320K), "clawdbot ran an ad account" (289K)</span><span class="wgo">profile ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/alassafi.ai/" target="_blank" rel="noopener"><span class="wv">534,369</span><span class="wh">alassafi.ai · "your AI is resetting every session… Gone." (9s, the tightest shape in the niche)</span><span class="wgo">profile ↗</span></a>
+      <a class="wrow" href="https://www.instagram.com/minolee.mp4/" target="_blank" rel="noopener"><span class="wv">656,744</span><span class="wh">minolee.mp4 · "road to $100k a month, the finale" (documented-journey format)</span><span class="wgo">profile ↗</span></a>
+      <p class="watch-note">Exact competitor reel permalinks weren't in the scrape write-ups, these open the profiles; the top reels sit at the top by views. To lock exact links, re-run the Apify scraper and read the url field.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-card reveal">
+      <span class="eyebrow">What this board became</span>
+      <h2 style="margin-top:12px;">The research turned into the sample.</h2>
+      <p class="muted" style="margin-top:12px;max-width:60ch;">Everything above is the raw material: real numbers from the channel, the north star, and the niche. From it came the idea menu, four ideas pitched with the why, two picked, and those two scripted and storyboarded shot by shot.</p>
+      <div class="foot-steps">
+        <div class="fstep"><span class="n">STEP 1</span><p><b>The research</b>, this board: channel, north star, niche.</p></div>
+        <div class="fstep"><span class="n">STEP 2</span><p><b>4 ideas pitched</b>, each with the why.</p></div>
+        <div class="fstep"><span class="n">STEP 3</span><p><b>2 picked</b> to fully script.</p></div>
+        <div class="fstep"><span class="n">STEP 4</span><p><b>Scripted + storyboarded</b>, shot by shot.</p></div>
+      </div>
+      <div class="signoff">Gascon.ai · content intelligence · sources: Kallaway anatomy + Austin deep study + 3 competitor scans, all real Apify/yt-dlp data, 2026-07-09</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+      var els = document.querySelectorAll('.reveal');
+      els.forEach(function(el,i){ el.style.animationDelay = (i*70)+'ms'; });
+    }
+  })();
+</script>
+
+</body>
+</html>
